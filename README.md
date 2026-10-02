@@ -15,7 +15,7 @@ Say **"upsweep"** and you get:
 npx skills add dave8172/upsweep
 ```
 
-This works for most agents; it asks which ones to install into. Then say **"upsweep"**. If Upwork isn't connected yet, the skill sets it up or shows you how. That's usually one command, then signing in to Upwork.
+This works for most agents; it asks which ones to install into. To get the latest rules and fixes later, run `npx skills update upsweep`. Then say **"upsweep"**. If Upwork isn't connected yet, the skill sets it up or shows you how. That's usually one command, then signing in to Upwork.
 
 For Claude on the web or desktop, download this repo as a ZIP, upload the `skills/upsweep` folder under Customize → Skills, and add the Upwork connector.
 
@@ -48,7 +48,7 @@ The shape of a report. Your counts come from your own sweep; nothing is kept aft
 
 ## Then
 
-- **"draft 2"**: a short proposal draft for job 2. The hook comes first, then your real proof, then a question. You put it in your own words and submit it on Upwork yourself.
+- **"draft 2"**: a short proposal draft for job 2. The hook comes first, then your real proof, then a question. Put it in your own words, then submit it on Upwork, or say **"send"** and the agent shows you Upwork's preview to approve.
 - **"change filters"**: edit them in plain words.
 
 ## Plays by Upwork's rules
@@ -57,7 +57,7 @@ Upwork's [API & MCP Terms](https://www.upwork.com/legal#apimcpterms) set the lim
 - It runs only when you ask, never on a schedule.
 - It uses only your search terms and filters, and never ranks jobs by its own judgment.
 - It stores no job data. Only your settings are saved, in `~/.upsweep/profile.md`.
-- It only reads. Proposals are drafts you submit yourself.
+- A sweep only reads. A proposal is sent only after you approve Upwork's preview for it, one at a time.
 
 ## Good to know
 
