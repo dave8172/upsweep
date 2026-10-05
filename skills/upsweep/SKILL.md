@@ -44,7 +44,8 @@ Settings live in `$UPSWEEP_DIR/profile.md`, or `~/.upsweep/profile.md` if that's
      - client hire rate: **80%+**, and show clients with no history as "new client"
      - hourly floor: **60% of their profile rate**, if one is set
      - fixed-price floor: **$100**
-     - experience level and client location: **any**
+     - experience level: **any**
+     - client location: **any**. The user can name countries or regions to keep only, or to exclude
      - hide jobs they already applied to, or where someone is already hired
    - **Proof:** 3–6 things they have shipped, from their profile. This is used only for drafting proposals.
    - Show it as one compact block, ending with *"Reply ok, or tell me what to change in plain words."*
@@ -54,10 +55,11 @@ Settings live in `$UPSWEEP_DIR/profile.md`, or `~/.upsweep/profile.md` if that's
 
 1. **Search.** For each title keyword, run one page of `find_jobs` `search` with `title`, `verified_payment_only` and `sort=recency`. For each query, run one page with `query`. Add one page of `smart_search` (`mode=most_recent`, `days_posted` from the filter): Upwork's own feed for this user. Drop duplicates and anything older than the window.
    - If your agent can run a sub-agent, it may do the searching and return compact rows. That keeps the main conversation small.
-2. **Filter.** Apply the cheap filters first: date, verified, proposals, budget floors, already applied. For each job that passes, call `find_jobs` `get` and check the hire-rate filter (`client_record.hire_rate_percent`) and `jobActivity.totalHired`.
+2. **Filter.** Apply the cheap filters first: date, verified, proposals, budget floors, client location, already applied. For each job that passes, call `find_jobs` `get` and check the hire-rate filter (`client_record.hire_rate_percent`) and `jobActivity.totalHired`.
+   - **Client location:** each search row has `client.country`, as a name or a 3-letter code ("Pakistan" or "PAK"). Treat both as the same country. A region the user names, such as "Africa" or "Europe", covers every country in it. If `client_location` lists places, drop every job whose country isn't one of them. Drop every job whose country is in `exclude_client_locations`. A job with no country passes and shows "country not shown".
 3. **Report** in the conversation, with nothing saved, in this order:
-   - **Matches:** every job that passes all filters, newest first. For each: linked title, posted date, budget, proposals, client hire rate and spend, and Connects cost. If none pass, write *"Nothing passes all your filters right now."*
-   - **One filter away:** up to 5 jobs that fail exactly one filter, newest first, each naming that filter. The user decides whether to loosen it.
+   - **Matches:** every job that passes all filters, newest first. For each: linked title, posted date, client country, budget, proposals, client hire rate and spend, and Connects cost. If none pass, write *"Nothing passes all your filters right now."*
+   - **One filter away:** up to 5 jobs that fail exactly one filter, newest first, each with its client country and the filter it missed. The user decides whether to loosen it.
    - **What these clients ask for:** drawn from every job your searches returned, not just the matches. Give each count against the total, e.g. "7 of 31":
      - the problems clients describe most
      - the tools they name; mark ones missing from the user's profile skills
@@ -99,7 +101,8 @@ new_clients: show
 min_hourly: <number or none>
 min_fixed: 100
 experience_level: any
-client_location: any
+client_location: <any, or countries/regions to keep only>
+exclude_client_locations: <none, or countries/regions to exclude>
 
 ## Proof
 - <thing shipped, with a number if there is one>

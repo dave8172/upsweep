@@ -6,7 +6,7 @@ A skill for AI agents: Claude Code, Codex, Cursor, Gemini CLI, Copilot, OpenCode
 
 Say **"upsweep"** and you get:
 
-1. **Matching jobs:** every job that passes your filters (verified payment, posted recently, few proposals, a client who actually hires), newest first. Each comes with the link and the Connects cost.
+1. **Matching jobs:** every job that passes your filters (verified payment, posted recently, few proposals, a client who actually hires, client location), newest first. Each comes with the link and the Connects cost.
 2. **What those clients ask for:** the problems they describe most, the tools they name (including ones missing from your profile), what they screen applicants on, typical budgets, and how fast posts fill up.
 
 ## Install
@@ -31,14 +31,15 @@ The skill reads your Upwork profile and proposes your searches and filters in on
 | Client hire rate | 80%+ | Some clients post and never hire. New clients are shown and labelled |
 | Hourly floor | 60% of your profile rate | Hides the bargain-bin posts |
 | Fixed-price floor | $100 | Same |
+| Client location | any | Keep only, or exclude, the countries or regions you name |
 
 ## What a sweep looks like
 
 The shape of a report. Your counts come from your own sweep; nothing is kept afterwards.
 
-> **Matches (newest first):** linked title · posted · budget · proposals · client hire rate and spend · Connects
+> **Matches (newest first):** linked title · posted · client country · budget · proposals · client hire rate and spend · Connects
 >
-> **One filter away:** up to 5 jobs, each naming the filter it missed
+> **One filter away:** up to 5 jobs, each with its client country and the filter it missed
 >
 > **What these clients ask for (out of N jobs):**
 > - the problems they describe most, each with a count
